@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 15:24:15 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/24 17:42:20 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/28 21:05:20 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/07 13:52:55 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "solver.h"
-#include "tetramino.h"
-#include <fcntl.h>
 
-int main(int argc, char **argv)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	int file_desc;
-	t_list *piece_list;
-	
-	if (argc != 2)
-	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
-	}
-	if ((piece_list = extract_tetraminos(argv[1])) == NULL)
-	{
-		ft_putstr("error\n");
-	   	return (1);
-	}
+	t_list	*current;
+	t_list	*new_lst;
+	t_list	*new_lst_head;
 
-
-	
-	return (0);
+	new_lst_head = NULL;
+	while (lst)
+	{
+		new_lst = malloc(sizeof(size_t));
+		if (!new_lst)
+			return (NULL);
+		new_lst = f(lst);
+		if (!new_lst_head)
+		{
+			new_lst_head = new_lst;
+			current = new_lst;
+		}
+		else
+		{
+			current->next = new_lst;
+			current = current->next;
+		}
+		lst = lst->next;
+	}
+	return (new_lst_head);
 }

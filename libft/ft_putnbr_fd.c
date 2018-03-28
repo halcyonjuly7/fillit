@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/27 18:52:35 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/01 18:47:59 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+void		ft_putnbr_fd(int nb, int fd)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	int		is_negative;
+	int		rem;
+	int		index;
+	char	str[11];
 
-#endif
+	is_negative = (nb < 0) ? -1 : 1;
+	index = 0;
+	if (nb == 0)
+		ft_putchar_fd('0', fd);
+	while (nb != 0)
+	{
+		rem = nb % 10;
+		str[index++] = (rem * is_negative) + '0';
+		nb = nb / 10;
+	}
+	if (is_negative == -1)
+		str[index++] = '-';
+	while (index > 0)
+		ft_putchar_fd(str[--index], fd);
+}

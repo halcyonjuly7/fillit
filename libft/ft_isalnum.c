@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/23 18:23:48 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/05 12:52:48 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+int		ft_isalnum(int c)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
-
-#endif
+	return (ft_isdigit(c) || ft_isalpha(c));
+}

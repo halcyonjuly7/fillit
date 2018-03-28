@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/03/01 14:28:16 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/13 18:12:04 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+char	*ft_itoa(int n)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	char	*str;
 
-#endif
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	str = (char *)malloc(sizeof(char) * 2);
+	if (str == NULL)
+		return (NULL);
+	if (n < 0)
+	{
+		str[0] = '-';
+		str[1] = '\0';
+		str = ft_strjoin(str, ft_itoa(-n));
+	}
+	else if (n >= 10)
+		str = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
+	else if (n < 10 && n >= 0)
+	{
+		str[0] = n + '0';
+		str[1] = '\0';
+	}
+	return (str);
+}

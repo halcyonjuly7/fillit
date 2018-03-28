@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/27 11:43:50 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/13 18:54:38 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+void	ft_striter(char *s, void (*f)(char *))
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	int index;
 
-#endif
+	index = 0;
+	if (!s || !f)
+		return ;
+	while (s[index])
+	{
+		f(&s[index]);
+		index++;
+	}
+}

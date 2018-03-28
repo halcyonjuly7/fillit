@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/23 18:29:15 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/13 18:55:55 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+int		ft_isascii(int c)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
-
-#endif
+	return (c >= 0 && c <= 127);
+}

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/23 13:46:47 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/05 15:32:41 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+int					ft_strcmp(const char *s1, const char *s2)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	unsigned int	index;
+	unsigned char	*s1_copy;
+	unsigned char	*s2_copy;
 
-#endif
+	index = 0;
+	s1_copy = (unsigned char *)s1;
+	s2_copy = (unsigned char *)s2;
+	while (s1_copy[index] == s2_copy[index])
+	{
+		if (s1[index] == '\0')
+			return (0);
+		index++;
+	}
+	return (s1_copy[index] - s2_copy[index]);
+}

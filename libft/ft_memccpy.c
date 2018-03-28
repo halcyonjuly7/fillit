@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 19:11:32 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/27 15:51:40 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/20 16:28:27 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/10 15:36:58 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-
-# define MAP_H
-
 #include "libft.h"
 
-typedef struct	s_data
+void					*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	unsigned char		*dest_copy;
+	const unsigned char	*source_copy;
 
-#endif
+	dest_copy = dst;
+	source_copy = src;
+	while (n)
+	{
+		if ((*dest_copy++ = *source_copy++) == (unsigned char)c)
+			return (dest_copy);
+		n--;
+	}
+	return (0);
+}

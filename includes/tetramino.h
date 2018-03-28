@@ -12,21 +12,26 @@
 
 #ifndef TETRAMINO_H
 
-# define TERTRAMINO_H
+# define TETRAMINO_H
 
 #include "libft.h"
-
-t_list extract_tetraminos(char **file_path);
+#include "map.h"
 
 typedef struct			s_etmino {
 	char				**piece;
 	struct s_etmino		*next;
 }						t_etmino;
 
-typedef struct	s_coords
+typedef struct			s_coords
 {
-	int			row;
-	int			col;
-}				t_coords;
+	int					row;
+	int					col;
+}						t_coords;
+
+t_coords				*new_coord(int row, int col);
+t_list					*extract_tetraminos(char *file_path);
+t_data					*get_map_data(char **tetrimino);
+t_coords				**get_coords(char **tetrimino);
+//t_list					*get_coords(char **tetrimino);
 
 # endif

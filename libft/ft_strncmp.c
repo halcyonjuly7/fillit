@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 15:24:15 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/24 17:42:20 by hramirez         ###   ########.fr       */
+/*   Created: 2018/02/23 17:29:22 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/13 17:18:42 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "solver.h"
-#include "tetramino.h"
-#include <fcntl.h>
 
-int main(int argc, char **argv)
+int					ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int file_desc;
-	t_list *piece_list;
-	
-	if (argc != 2)
-	{
-		ft_putstr("usage: fillit input_file\n");
-		return (1);
-	}
-	if ((piece_list = extract_tetraminos(argv[1])) == NULL)
-	{
-		ft_putstr("error\n");
-	   	return (1);
-	}
+	unsigned char	*s1_copy;
+	unsigned char	*s2_copy;
+	size_t			index;
 
-
-	
-	return (0);
+	index = 0;
+	s1_copy = (unsigned char *)s1;
+	s2_copy = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (s1_copy[index] == s2_copy[index] && index < n - 1
+			&& s1_copy[index] && s2_copy[index])
+	{
+		if (s1_copy[index] == '\0')
+			return (0);
+		index++;
+	}
+	return (s1_copy[index] - s2_copy[index]);
 }

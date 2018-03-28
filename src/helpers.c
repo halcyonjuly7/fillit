@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "helpers.h"
-#include <stdlib.c>
+#include <stdlib.h>
 
 void free_tetrimino(char **tetrimino)
 {
