@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_SOLVER_H_H
-# define FILLIT_SOLVER_H_H
+#ifndef SOLVER_H
+# define SOLVER_H
 
-int	solve(t_list *coord_list);
+#include "map.h"
 
+void	solve(t_list *coord_list);
+int		solve_fillit(t_map *board, t_list *coords, char letter);
 
 #endif

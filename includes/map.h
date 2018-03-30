@@ -15,13 +15,21 @@
 # define MAP_H
 
 #include "libft.h"
+#include "tetramino.h"
 
-typedef struct	s_data
+
+typedef struct	s_map
 {
-	int 		rows;
-	int 		cols;
-	int			checks;
-    t_list		*coord_list;	
-}				t_data;
+	int			size;
+	char		**board;
+}				t_map;
+
+
+
+char			**create_new_map(int);
+void			clear_board(t_map *, char);
+void			print_map(t_map *);
+
+
 
 #endif

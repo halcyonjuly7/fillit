@@ -17,7 +17,7 @@
 
 int validate_tetramino(t_data*, char**);
 int check_right(int cur_row, int cur_col, t_data *m_data, char **tet);
-int check_left(int cur_row, int cur_col, t_data *m_data, char **tet);
+int check_left(int cur_row, int cur_col, char **tet);
 int check_up(int cur_row, int cur_col, t_data *m_data, char **tet);
 int check_down(int cur_row, int cur_col, t_data *m_data, char **tet);
 

@@ -14,37 +14,13 @@
 #include "tetramino.h"
 #include "validator.h"
 #include "normalize.h"
-#include <fcntl.h>
-#include <stdlib.h>
 
-//t_list *get_coords(char **tetrimino)
-//{
-//	t_list *coord_list;
-//	int row;
-//	int col;
-//
-//	row = 0;
-//	coord_list = NULL;
-//	while(tetrimino[row])
-//	{
-//		col = 0;
-//		while(tetrimino[row][col])
-//		{
-//			if (tetrimino[row][col] == '#')
-//				ft_lstadd(&coord_list, ft_lstnew(new_coord(row, col), sizeof(t_coords)));
-//			col++;
-//		}
-//		row++;
-//	}
-//	return (coord_list);
-//}
-
-t_coords **get_coords(char **tetrimino)
+t_coords		**get_coords(char **tetrimino)
 {
-	t_coords **coord_list;
-	int row;
-	int col;
-	int index;
+	t_coords	**coord_list;
+	int 		row;
+	int 		col;
+	int 		index;
 
 	row = 0;
 	index = 0;
@@ -59,7 +35,6 @@ t_coords **get_coords(char **tetrimino)
 				coord_list[index] = new_coord(row, col);
 				index++;
 			}
-//				ft_lstadd(&coord_list, ft_lstnew(new_coord(row, col), sizeof(t_coords)));
 			col++;
 		}
 		row++;
@@ -68,11 +43,11 @@ t_coords **get_coords(char **tetrimino)
 }
 
 
-t_data		*get_map_data(char **tetrimino)
+t_data			*get_map_data(char **tetrimino)
 {
-	int		row;
-	int		col;
-	t_data	*map_data;
+	int			row;
+	int			col;
+	t_data		*map_data;
 
 	row = 0;
 	col = 0;
@@ -89,7 +64,7 @@ t_data		*get_map_data(char **tetrimino)
 
 t_coords		*new_coord(int row, int col)
 {
-	t_coords *coord;
+	t_coords	*coord;
 
 	coord = ft_memalloc(sizeof(t_coords));
 	coord->row = row;
@@ -97,19 +72,17 @@ t_coords		*new_coord(int row, int col)
 	return (coord);
 }
 
-t_list			*extract_tetraminos(char *file_path)
+t_list			*extract_tetraminos(int file_handle)
 {
 	char		*buffer;
 	char		**tetrimino;
 	t_coords	**coord_list;
-	int fd;
-
 	t_list		*list;
 	t_data		*map_data;
+
 	list = NULL;
 	buffer = ft_strnew(21);
-	fd = open(file_path, O_RDONLY);
-	while (read(fd, buffer, 21) >= 20)
+	while (read(file_handle, buffer, 21) >= 19)
 	{
 		tetrimino = ft_strsplit(buffer, '\n');
 		map_data = get_map_data(tetrimino);
@@ -117,7 +90,6 @@ t_list			*extract_tetraminos(char *file_path)
 			return (NULL);
 		coord_list = normalize_coords(get_coords(tetrimino));
 		ft_lstadd(&list, ft_lstnew(coord_list, sizeof(t_coords) * 4));
-//		ft_strclr(buffer);
 	}
 	ft_memdel((void **)&buffer);
 	ft_lstrev(&list);

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   piece.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 14:36:52 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/10 15:36:25 by hramirez         ###   ########.fr       */
+/*   Created: 2018/03/29 18:32:56 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/29 18:38:38 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FILLIT_PIECE_H
+# define FILLIT_PIECE_H
 
-void				*ft_memchr(const void *s, int c, size_t n)
-{
-	unsigned int	index;
-	unsigned char	*src_copy;
+#include "map.h"
 
-	index = 0;
-	src_copy = (unsigned char *)s;
-	while (index < n)
-	{
-		if (src_copy[index] == (unsigned char)c)
-			return ((void *)&src_copy[index]);
-		index++;
-	}
-	return (NULL);
-}
+int				place_piece(t_coords **, t_map *, int, int, char);
+void 			clear_piece(t_coords **, t_map *, int, int);
+int				can_place(t_coords **, t_map *, int, int);
+
+# endif

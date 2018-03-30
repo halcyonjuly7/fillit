@@ -13,68 +13,7 @@
 #include "normalize.h"
 #include "tetramino.h"
 
-//t_list *normalize_coords(t_list *coord_list)
-//{
-//	normalize_horizontal(coord_list);
-//	normalize_vertical(coord_list);
-//	return (coord_list);
-//}
-//
-//void			normalize_vertical(t_list *coord_list)
-//{
-//	t_list		*current_item;
-//	t_coords	*current_coord;
-//
-//	current_item = coord_list;
-//	while (1)
-//	{
-//		while (current_item)
-//		{
-//			current_coord = current_item->content;
-//			if (!(current_coord->row > 0))
-//				return;
-//			current_item = current_item->next;
-//		}
-//		current_item = coord_list;
-//		while (current_item)
-//		{
-//			current_coord = current_item->content;
-//			current_coord->row = current_coord->row - 1;
-//			current_item = current_item->next;
-//		}
-//		current_item = coord_list;
-//	}
-//}
-//
-//void normalize_horizontal(t_list *coord_list)
-//{
-//	t_list	*current_item;
-//	t_coords	*current_coord;
-//
-//	current_item = coord_list;
-//	while (1)
-//	{
-//		while (current_item)
-//		{
-//			current_coord = current_item->content;
-//			if (!(current_coord->col > 0))
-//				return;
-//			current_item = current_item->next;
-//		}
-//		current_item = coord_list;
-//		while (current_item)
-//		{
-//			current_coord = current_item->content;
-//			current_coord->col = current_coord->col - 1;
-//			current_item = current_item->next;
-//		}
-//		current_item = coord_list;
-//	}
-//
-//}
-
-
-t_coords **normalize_coords(t_coords **coord_list)
+t_coords		**normalize_coords(t_coords **coord_list)
 {
 	normalize_horizontal(coord_list);
 	normalize_vertical(coord_list);
@@ -83,7 +22,7 @@ t_coords **normalize_coords(t_coords **coord_list)
 
 void			normalize_vertical(t_coords **coord_list)
 {
-	int index;
+	int			index;
 
 	index = 0;
 	while (1)
@@ -104,9 +43,9 @@ void			normalize_vertical(t_coords **coord_list)
 	}
 }
 
-void normalize_horizontal(t_coords **coord_list)
+void			normalize_horizontal(t_coords **coord_list)
 {
-	int index;
+	int			index;
 
 	index = 0;
 	while (1)
