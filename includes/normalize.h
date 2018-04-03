@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #ifndef NORMALIZE_H
-
 # define NORMALIZE_H
+# include "libft.h"
+# include "tetramino.h"
 
-t_list	*normalize_coords(char * tetrimino);
-void	normalize_left(t_list *coord_list);
-void	normalize_right(t_list *coord_list);
+t_coords	**normalize_coords(t_coords **coord_list);
+void		normalize_vertical(t_coords **coord_list);
+void		normalize_horizontal(t_coords **coord_list);
 
-
+#endif

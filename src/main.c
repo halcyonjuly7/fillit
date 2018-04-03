@@ -11,27 +11,31 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fillit.h"
 #include "solver.h"
-#include "tetrimino.h"
+#include "map.h"
 #include <fcntl.h>
 
-int main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
-	int file_desc;
-	t_list piece_list;
-	
+	t_list		*piece_list;
+	int			file_handle;
+
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit input_file\n");
 		return (1);
 	}
-	
-	if ((piece_list = extract_tetrimino(open(argv[1], O_RDONLY))) == NULL)
+	file_handle = open(argv[1], O_RDONLY);
+	if (file_handle != -1)
 	{
-		ft_putstr("error\n");
-	   	return (1);
+		if ((piece_list = extract_tetraminos(file_handle)) == NULL)
+		{
+			ft_putstr("error\n");
+			close(file_handle);
+			return (1);
+		}
+		solve(piece_list);
 	}
-	
+	close(file_handle);
 	return (0);
 }

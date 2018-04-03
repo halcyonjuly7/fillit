@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.h                                             :+:      :+:    :+:   */
+/*   cleaner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/21 13:53:41 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/21 13:58:47 by hramirez         ###   ########.fr       */
+/*   Created: 2018/04/02 18:34:43 by hramirez          #+#    #+#             */
+/*   Updated: 2018/04/02 18:34:50 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILE_H
-#define FILE_H
+#ifndef FILLIT_CLEANER_H
+#define FILLIT_CLEANER_H
+#include <libft.h>
+#include "map.h"
 
-char **extract_tetraminos(int fd);
-
+void free_list(t_list* coord_list);
+void free_map(t_map* map);
+void free_tetrimino(char** tet);
 
 #endif

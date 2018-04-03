@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.h                                          :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramirez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/24 17:10:39 by hramirez          #+#    #+#             */
-/*   Updated: 2018/03/24 17:12:23 by hramirez         ###   ########.fr       */
+/*   Created: 2018/03/31 23:09:47 by hramirez          #+#    #+#             */
+/*   Updated: 2018/03/31 23:09:57 by hramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HELPERS_H
-# define HELPERS_H
-#include <stdlib.h>
+#include "libft.h"
 
-void clear_tetrimino(char **tetrimino);
+void		ft_lstrev(t_list **lst)
+{
+	t_list	*current;
+	t_list	*prev;
+	t_list	*next;
 
-#endif
+	current = *lst;
+	prev = NULL;
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*lst = prev;
+}
