@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cleaner.h>
 #include "solver.h"
 #include "piece.h"
 
-void solve(t_list *coord_list)
+void	solve(t_list *coord_list)
 {
-	t_map *map;
-	char letter;
+	t_map	*map;
+	char	letter;
 
 	letter = 'A';
 	map = malloc(sizeof(t_map));
@@ -25,32 +26,33 @@ void solve(t_list *coord_list)
 	while (!solve_fillit(map, coord_list, letter))
 		map->size = map->size + 1;
 	print_map(map);
-
+	free_map(map);
+	free_list(coord_list);
 }
 
-int solve_fillit(t_map *board, t_list *coords, char letter)
+int		solve_fillit(t_map *board, t_list *coords, char letter)
 {
-	int row;
-	int col;
+	t_piece_data piece_data;
 
+	piece_data.letter = letter;
 	if (coords == NULL)
 		return (1);
-	row = 0;
-	while (row < board->size)
+	piece_data.row = 0;
+	while (piece_data.row < board->size)
 	{
-		col = 0;
-		while (col < board->size)
+		piece_data.col = 0;
+		while (piece_data.col < board->size)
 		{
-			if (place_piece(coords->content, board, row, col, letter))
+			if (place_piece(coords->content, board, piece_data))
 			{
-				if (solve_fillit(board, coords->next, letter+1))
+				if (solve_fillit(board, coords->next, letter + 1))
 					return (1);
-				else
-					clear_piece(coords->content, board, row, col);
+				clear_piece(coords->content, board, piece_data.row,
+							piece_data.col);
 			}
-			col++;
+			piece_data.col++;
 		}
-		row++;
+		piece_data.row++;
 	}
 	return (0);
 }

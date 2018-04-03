@@ -11,12 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef MAP_H
-
 # define MAP_H
-
-#include "libft.h"
-#include "tetramino.h"
-
+# include "libft.h"
+# include "tetramino.h"
 
 typedef struct	s_map
 {
@@ -24,12 +21,9 @@ typedef struct	s_map
 	char		**board;
 }				t_map;
 
-
-
-char			**create_new_map(int);
-void			clear_board(t_map *, char);
-void			print_map(t_map *);
-
+char			**create_new_map(int size);
+void			print_map(t_map *map);
+t_data			*get_map_data(char **tet);
 
 
 #endif

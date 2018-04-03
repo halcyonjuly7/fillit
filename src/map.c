@@ -10,22 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "map.h"
 #include "piece.h"
 
 char	**create_new_map(int size)
 {
-	int row;
-	int col;
-	char **map;
+	int			row;
+	int			col;
+	char		**map;
 
 	row = 0;
 	map = (char **)malloc(sizeof(char *) * (size + 1));
 	while (row < size)
 	{
-		col=0;
+		col = 0;
 		map[row] = ft_strnew((size_t)size);
 		while (col < size)
 		{
@@ -38,32 +36,14 @@ char	**create_new_map(int size)
 }
 
 
-void	clear_board(t_map *board, char letter)
-{
-	int row;
-	int col;
-
-	row = 0;
-	while (row < board->size)
-	{
-		col = 0;
-		while (col < board->size)
-		{
-			board->board[row][col] = letter;
-			col++;
-		}
-		row++;
-	}
-}
-
 
 void	print_map(t_map *board)
 {
-	int row;
-	int col;
+	int			row;
+	int			col;
 
 	row = 0;
-	while(row < board->size)
+	while (row < board->size)
 	{
 		col = 0;
 		while (col < board->size)
@@ -71,8 +51,23 @@ void	print_map(t_map *board)
 		ft_putchar('\n');
 		row++;
 	}
-
 }
 
+t_data	*get_map_data(char **tetrimino)
+{
+	int			row;
+	int			col;
+	t_data		*map_data;
 
-
+	row = 0;
+	col = 0;
+	map_data = malloc(sizeof(t_data));
+	while (tetrimino[row][col])
+		col++;
+	while (tetrimino[row])
+		row++;
+	map_data->cols = col;
+	map_data->rows = row;
+	map_data->checks = 0;
+	return (map_data);
+}

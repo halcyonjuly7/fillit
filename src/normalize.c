@@ -30,7 +30,7 @@ void			normalize_vertical(t_coords **coord_list)
 		while (index < 4)
 		{
 			if (!(coord_list[index]->row > 0))
-				return;
+				return ;
 			index++;
 		}
 		index = 0;
@@ -53,7 +53,7 @@ void			normalize_horizontal(t_coords **coord_list)
 		while (index < 4)
 		{
 			if (!(coord_list[index]->col > 0))
-				return;
+				return ;
 			index++;
 		}
 		index = 0;

@@ -10,25 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cleaner.h>
 #include "libft.h"
 #include "tetramino.h"
 #include "validator.h"
 #include "normalize.h"
+#define X_PMS char* buffer;char** tet;t_coords **coord_list
+#define X_PMS2 t_list* list;t_data* m_d;int n;int prev_read;
 
-t_coords		**get_coords(char **tetrimino)
+t_coords	**get_coords(char **tetrimino)
 {
 	t_coords	**coord_list;
-	int 		row;
-	int 		col;
-	int 		index;
+	int			row;
+	int			col;
+	int			index;
 
 	row = 0;
 	index = 0;
 	coord_list = malloc(sizeof(t_coords) * 4);
-	while(tetrimino[row])
+	while (tetrimino[row])
 	{
 		col = 0;
-		while(tetrimino[row][col])
+		while (tetrimino[row][col])
 		{
 			if (tetrimino[row][col] == '#')
 			{
@@ -42,56 +45,59 @@ t_coords		**get_coords(char **tetrimino)
 	return (coord_list);
 }
 
-
-t_data			*get_map_data(char **tetrimino)
+int			validate_buffer(char *buffer)
 {
-	int			row;
-	int			col;
-	t_data		*map_data;
+	int		index;
+	int		newline_count;
+	char	current_char;
 
-	row = 0;
-	col = 0;
-	map_data = malloc(sizeof(t_data));
-	while (tetrimino[row][col])
-		col++;
-	while (tetrimino[row])
-		row++;
-	map_data->cols = col;
-	map_data->rows = row;
-	map_data->checks = 0;
-	return (map_data);
+	index = 0;
+	newline_count = 0;
+	if ((buffer[19] == '\n' && !(buffer[20] == '\n' || buffer[20] == '\0'))
+		|| !(buffer[0] == '.' || buffer[0] == '#'))
+		return (0);
+	while (buffer[index])
+	{
+		current_char = buffer[index];
+		if (current_char == '.' || current_char == '#' || current_char == '\n')
+		{
+			if (current_char == '\n')
+				newline_count++;
+			index++;
+		}
+		else
+			return (0);
+	}
+	return ((newline_count == 5 || newline_count == 4));
 }
 
-t_coords		*new_coord(int row, int col)
+t_list		*extract_tetraminos(int file_handle)
 {
-	t_coords	*coord;
-
-	coord = ft_memalloc(sizeof(t_coords));
-	coord->row = row;
-	coord->col = col;
-	return (coord);
-}
-
-t_list			*extract_tetraminos(int file_handle)
-{
-	char		*buffer;
-	char		**tetrimino;
-	t_coords	**coord_list;
-	t_list		*list;
-	t_data		*map_data;
-
+	X_PMS;
+	X_PMS2;
 	list = NULL;
 	buffer = ft_strnew(21);
-	while (read(file_handle, buffer, 21) >= 19)
+	while ((n = read(file_handle, buffer, 21)) >= 20)
 	{
-		tetrimino = ft_strsplit(buffer, '\n');
-		map_data = get_map_data(tetrimino);
-		if (!validate_tetramino(map_data, tetrimino))
+		prev_read = n;
+		if (!validate_buffer(buffer))
 			return (NULL);
-		coord_list = normalize_coords(get_coords(tetrimino));
+		tet = ft_strsplit(buffer, '\n');
+		m_d = get_map_data(tet);
+		if (m_d->rows != 4 || m_d->cols != 4 || !validate_tetramino(m_d, tet))
+		{
+			free(m_d);
+			return (NULL);
+		}
+		coord_list = normalize_coords(get_coords(tet));
 		ft_lstadd(&list, ft_lstnew(coord_list, sizeof(t_coords) * 4));
+		ft_strclr(buffer);
+		free_tetrimino(tet);
+
 	}
 	ft_memdel((void **)&buffer);
+	if (prev_read != 20)
+		return (NULL);
 	ft_lstrev(&list);
 	return (list);
 }

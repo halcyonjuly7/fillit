@@ -12,8 +12,7 @@
 
 #ifndef SOLVER_H
 # define SOLVER_H
-
-#include "map.h"
+# include "map.h"
 
 void	solve(t_list *coord_list);
 int		solve_fillit(t_map *board, t_list *coords, char letter);
