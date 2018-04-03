@@ -1,6 +1,5 @@
 *.sw*
 *.o
 *.bak
-CMakeLists.txt
 .idea/
 cmake-build-debug/
