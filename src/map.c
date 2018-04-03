@@ -13,6 +13,29 @@
 #include "map.h"
 #include "piece.h"
 
+//char	**create_new_map(int size)
+//{
+//	int			row;
+//	int			col;
+//	char		**map;
+//	char		*row;
+//
+//	row = 0;
+//	map = (char **)malloc(sizeof(char *) * (size + 1));
+//	while (row < size)
+//	{
+//		col = 0;
+//		map[row] = ft_strnew((size_t)size);
+//		while (col < size)
+//		{
+//			map[row][col] = '.';
+//			col++;
+//		}
+//		row++;
+//	}
+//	return (map);
+//}
+
 char	**create_new_map(int size)
 {
 	int			row;
@@ -32,8 +55,10 @@ char	**create_new_map(int size)
 		}
 		row++;
 	}
+	map[row] = '\0';
 	return (map);
 }
+
 
 
 

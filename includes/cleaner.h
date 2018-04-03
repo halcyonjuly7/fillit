@@ -16,7 +16,9 @@
 #include "map.h"
 
 void	free_list(t_list* coord_list);
-void	free_map(t_map* map);
+//void	free_map(char ***map, int size);
+void	free_map(char **board, int size);
+//void	free_map(t_map* map);
 void	free_tetrimino(char** tet);
 void	free_coords(t_coords** coords);
 

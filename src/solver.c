@@ -16,18 +16,16 @@
 
 void	solve(t_list *coord_list)
 {
-	t_map	*map;
+	t_map	map;
 	char	letter;
 
 	letter = 'A';
-	map = malloc(sizeof(t_map));
-	map->size = 2;
-	map->board = create_new_map(15);
-	while (!solve_fillit(map, coord_list, letter))
-		map->size = map->size + 1;
-	print_map(map);
-	free_map(map);
-	free_list(coord_list);
+	map.size = 2;
+	map.board = create_new_map(15);
+	while (!solve_fillit(&map, coord_list, letter))
+		map.size = map.size + 1;
+	print_map(&map);
+	free_map(map.board, map.size);
 }
 
 int		solve_fillit(t_map *board, t_list *coords, char letter)

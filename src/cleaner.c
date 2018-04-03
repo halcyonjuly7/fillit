@@ -13,14 +13,27 @@
 #include "cleaner.h"
 
 
-void	free_map(t_map *board)
+//void	free_map(char **map, int size)
+//{
+//	int			row;
+//
+//	row = 0;
+//	while (row < map->size)
+//	{
+//		free(map->board[row]);
+//		row++;
+//	}
+//	free(map->board);
+//}
+
+void	free_map(char **board, int size)
 {
-	int			row;
+	int row;
 
 	row = 0;
-	while (row < board->size)
+	while (board[row])
 	{
-		free(board->board[row]);
+		free(board[row]);
 		row++;
 	}
 	free(board);
@@ -45,7 +58,10 @@ void	free_coords(t_coords** coords)
 
 	index = 0;
 	while (index < 4)
-		free(coords[index++]);
+	{
+		free(coords[index]);
+		index++;
+	}
 	free(coords);
 }
 
@@ -62,4 +78,5 @@ void	free_list(t_list* coord_list)
 		free(current);
 		current = next;
 	}
+	free(current);
 }

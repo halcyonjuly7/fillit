@@ -14,6 +14,7 @@
 #include "solver.h"
 #include "map.h"
 #include <fcntl.h>
+#include <cleaner.h>
 
 int				main(int argc, char **argv)
 {
@@ -31,10 +32,12 @@ int				main(int argc, char **argv)
 		if ((piece_list = extract_tetraminos(file_handle)) == NULL)
 		{
 			ft_putstr("error\n");
+			free_list(piece_list);
 			close(file_handle);
 			return (1);
 		}
 		solve(piece_list);
+		free_list(piece_list);
 	}
 	close(file_handle);
 	return (0);
