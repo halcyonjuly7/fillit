@@ -11,12 +11,10 @@
 /* ************************************************************************** */
 
 #include <cleaner.h>
-#include "libft.h"
-#include "tetramino.h"
 #include "validator.h"
 #include "normalize.h"
-#define X_PMS char* buffer;char** tet;t_coords **coord_list
-#define X_PMS2 t_list* list;t_data* m_d;int n;int prev_read;
+#define X_PMS char* buffer;char** tet
+#define X_PMS2 t_list* list;t_data* m_d;int n;int prev_read
 
 t_coords	**get_coords(char **tetrimino)
 {
@@ -89,11 +87,10 @@ t_list		*extract_tetraminos(int file_handle)
 			free(m_d);
 			return (NULL);
 		}
-		coord_list = normalize_coords(get_coords(tet));
-		ft_lstadd(&list, ft_lstnew(coord_list, sizeof(t_coords) * 4));
+		ft_lstadd(&list, ft_lstnew(normalize_coords(get_coords(tet)),
+								   sizeof(t_coords) * 4));
 		ft_strclr(buffer);
 		free_tetrimino(tet);
-
 	}
 	ft_memdel((void **)&buffer);
 	if (prev_read != 20)

@@ -12,25 +12,6 @@
 
 #include "cleaner.h"
 
-void		free_list(t_list* coord_list)
-{
-	t_list *current;
-	t_list * next;
-	int index;
-	t_coords** content;
-
-	current = coord_list;
-	while (current)
-	{
-		index = 0;
-		content = current->content;
-		while (index < 4)
-			free(content[index++]);
-		next = current->next;
-		free(current);
-		current = next;
-	}
-}
 
 void	free_map(t_map *board)
 {
@@ -45,9 +26,9 @@ void	free_map(t_map *board)
 	free(board);
 }
 
-void free_tetrimino(char** tet)
+void	free_tetrimino(char** tet)
 {
-	int index;
+	int			index;
 
 	index = 0;
 	while (tet[index])
@@ -56,4 +37,29 @@ void free_tetrimino(char** tet)
 		index++;
 	}
 	free(tet);
+}
+
+void	free_coords(t_coords** coords)
+{
+	int index;
+
+	index = 0;
+	while (index < 4)
+		free(coords[index++]);
+	free(coords);
+}
+
+void	free_list(t_list* coord_list)
+{
+	t_list*		current;
+	t_list*		next;
+
+	current = coord_list;
+	while (current)
+	{
+		free_coords(current->content);
+		next = current->next;
+		free(current);
+		current = next;
+	}
 }
